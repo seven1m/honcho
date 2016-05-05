@@ -23,7 +23,7 @@ if you think it is!
 * Sends TERM signal to child processes so they shut down properly
 * Saves memory
 
-## Config
+## Configure and Run
 
 Honcho is configured with a `honcho.yml` file like this:
 
@@ -46,6 +46,18 @@ apps:
 ```
 
 `namespace` is the Redis namespace to monitor for jobs.
+
+Install Honcho:
+
+```
+gem install honcho
+```
+
+Run Honcho:
+
+```
+honcho
+```
 
 # To Do
 
