@@ -13,7 +13,7 @@ I don't need/want all of them running at once, so I built this.
 This might be super useful if you are using Vagrant or VM for development
 and want to limit its RAM usage.
 
-**This is probably not useful in a production environment** But, let me know
+**This is probably not useful in a production environment.** But, let me know
 if you think it is!
 
 ## Features
