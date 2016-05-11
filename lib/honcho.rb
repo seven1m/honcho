@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'redis'
-require 'sys/proctable'
 require 'time'
 require 'stringio'
 require 'yaml'
