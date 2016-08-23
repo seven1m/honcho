@@ -1,5 +1,18 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
 require_relative '../lib/honcho'
 
-Honcho.new.run
+options = {
+  config: 'honcho.yml'
+}
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: honcho [options]'
+
+  opts.on('-c', '--config path', 'specify config file path') do |path|
+    options[:config] = path
+  end
+end.parse!
+
+Honcho::Runner.new(options).run

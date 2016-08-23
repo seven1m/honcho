@@ -1,4 +1,4 @@
-class Honcho
+module Honcho
   module Adapters
     class Resque < Base
       private
