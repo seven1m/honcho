@@ -1,3 +1,8 @@
+# 1.1.0 (August 23, 2016)
+
+* FEATURE: add `-c` option for specifying config file path
+* FIX: fix bright colors
+
 # 1.0.2 (May 11, 2016)
 
 * FIX: make bin/honcho executable
