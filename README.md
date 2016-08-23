@@ -62,7 +62,7 @@ honcho
 # To Do
 
 - [ ] make the command template configurable via the command line
-- [ ] allow specifying path to config file via command line
+- [x] allow specifying path to config file via command line
 - [ ] maybe autodetect rbenv and simplify the `command_template` as a result
 
 # Copyright
