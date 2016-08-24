@@ -1,3 +1,7 @@
+# 1.2.1 (August 24, 2016)
+
+* FIX: remove require of sys-uptime library
+
 # 1.2.0 (August 24, 2016)
 
 * FEATURE: experimental top-like UI
