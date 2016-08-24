@@ -1,6 +1,5 @@
 require 'stringio'
 require 'curses'
-require 'sys-uptime'
 require_relative './passenger_status'
 require_relative './ui_runner/table'
 
