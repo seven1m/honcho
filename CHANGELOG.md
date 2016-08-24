@@ -1,3 +1,7 @@
+# 1.2.0 (August 24, 2016)
+
+* FEATURE: experimental top-like UI
+
 # 1.1.0 (August 23, 2016)
 
 * FEATURE: add `-c` option for specifying config file path
