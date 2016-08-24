@@ -1,20 +1,18 @@
 module Honcho
   module Adapters
     class Sidekiq < Base
-      private
-
-      def work_to_do?
+      def queued_count
         queues = redis.keys("#{namespace}:queue:*")
         counts = queues.map { |q| redis.llen(q) }
-        counts.any?(&:nonzero?)
+        counts.inject(&:+) || 0
       end
 
-      def work_being_done?
+      def busy_count
         processes = redis.smembers("#{namespace}:processes")
         counts = processes.map do |process|
           redis.hget("#{namespace}:#{process}", 'busy').to_i
         end
-        counts.any?(&:nonzero?)
+        counts.inject(&:+) || 0
       end
 
       def namespace

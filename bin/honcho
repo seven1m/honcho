@@ -13,6 +13,14 @@ OptionParser.new do |opts|
   opts.on('-c', '--config path', 'specify config file path') do |path|
     options[:config] = path
   end
+
+  opts.on('--ui', 'enable top-like user interface') do
+    options[:ui] = true
+  end
 end.parse!
 
-Honcho::Runner.new(options).run
+if options[:ui]
+  Honcho::UIRunner.new(options).run
+else
+  Honcho::Runner.new(options).run
+end

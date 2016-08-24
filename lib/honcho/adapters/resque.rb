@@ -1,17 +1,15 @@
 module Honcho
   module Adapters
     class Resque < Base
-      private
-
-      def work_to_do?
+      def queued_count
         queues = redis.smembers("#{namespace}:queues")
         counts = queues.map { |q| redis.llen("#{namespace}:queue:#{q}") }
-        counts.any?(&:nonzero?)
+        counts.inject(&:+) || 0
       end
 
-      def work_being_done?
+      def busy_count
         # No way to tell via redis if work is being done in resque? Booo.
-        false
+        0
       end
 
       def namespace

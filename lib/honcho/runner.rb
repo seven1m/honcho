@@ -1,28 +1,15 @@
-require 'curses'
 require 'redis'
 require 'time'
 require 'stringio'
 require 'yaml'
 require_relative './adapters'
+require_relative './colors'
 
 Thread.abort_on_exception = true
 
 module Honcho
   class Runner
-    COLORS = {
-      red:            '0;31',
-      green:          '0;32',
-      yellow:         '0;33',
-      blue:           '0;34',
-      magenta:        '0;35',
-      cyan:           '0;36',
-      bright_red:     '1;31',
-      bright_green:   '1;32',
-      bright_yellow:  '1;33',
-      bright_blue:    '1;34',
-      bright_magenta: '1;35',
-      bright_cyan:    '1;36'
-    }.freeze
+    include Colors
 
     def initialize(options)
       @config_file_path = options[:config]
@@ -30,11 +17,12 @@ module Honcho
       @running = {}
       @stopping = {}
       @redis = Redis.new
-      @adapters = build_adapters
-      @colors = assign_colors
+      @adapters_by_app = build_adapters
+      @adapters = @adapters_by_app.values.flatten
+      @colors = assign_colors_for_ansi
     end
 
-    attr_reader :config_file_path, :root_path, :adapters, :running, :stopping, :redis, :colors
+    attr_reader :config_file_path, :root_path, :adapters_by_app, :adapters, :running, :stopping, :redis, :colors
 
     def run
       trap(:INT)  { term_all && exit }
@@ -93,19 +81,12 @@ module Honcho
       @label_width ||= apps.keys.map(&:size).max
     end
 
-    def assign_colors
-      color_values = COLORS.values
-      apps.keys.each_with_object({}) do |app, hash|
-        hash[app] = color_values.shift
-      end
-    end
-
     def build_adapters
-      apps.flat_map do |app, config|
-        config.map do |type, worker_config|
+      apps.each_with_object({}) do |(app, config), hash|
+        hash[app] = config.map do |type, worker_config|
           build_adapter(app, config, type, worker_config)
-        end
-      end.compact
+        end.compact
+      end
     end
 
     def build_adapter(app, config, type, worker_config)

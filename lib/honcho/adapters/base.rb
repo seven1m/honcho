@@ -11,6 +11,10 @@ module Honcho
 
       attr_reader :config, :redis, :runner, :running, :stopping
 
+      def type
+        self.class.name.split(':').last.downcase
+      end
+
       def check_for_work
         if run?
           start
@@ -86,6 +90,10 @@ module Honcho
         @running = false
       end
 
+      def total_count
+        queued_count + busy_count
+      end
+
       private
 
       def log(*args)
@@ -105,11 +113,11 @@ module Honcho
       end
 
       def work_to_do?
-        raise NotImplementedError, "please define #{this.class.name}##{__method__}"
+        queued_count > 0
       end
 
       def work_being_done?
-        raise NotImplementedError, "please define #{this.class.name}##{__method__}"
+        busy_count > 0
       end
     end
   end
