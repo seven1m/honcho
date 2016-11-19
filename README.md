@@ -2,6 +2,9 @@
 
 *Honcho is a Sidekiq- and Resque-aware process manager.*
 
+**Note: I didn't realize when I made this that there was already [Honcho](https://github.com/nickstenning/honcho),
+a clone of Foreman in Python. Sorry for the confusion. I might end up renaming this.**
+
 You can use it in place of Foreman if you need to manage several instances
 of Sidekiq and/or Resque and don't necessarily need them all to run at once.
 
