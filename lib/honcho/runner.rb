@@ -40,7 +40,7 @@ module Honcho
 
     def spawn(path, cmd, out)
       Process.spawn(
-        {},
+        { 'RBENV_VERSION' => nil, 'RBENV_GEMSET_ALREADY' => nil, 'RBENV_DIR' => nil },
         "cd '#{root_path}/#{path}' && " + command_template % cmd,
         pgroup: true,
         err: out,
