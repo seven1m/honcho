@@ -40,6 +40,7 @@ module Honcho
 
     def spawn(path, cmd, out)
       Process.spawn(
+        {},
         "cd '#{root_path}/#{path}' && " + command_template % cmd,
         pgroup: true,
         err: out,
