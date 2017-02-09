@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.executables   = ['honcho']
   gem.files         = Dir['bin/*', 'lib/**/*'].to_a
   gem.require_paths = ['lib']
-  gem.version       = '1.2.2'
+  gem.version       = '1.2.3'
   gem.add_dependency 'redis'
   gem.add_dependency 'curses'
 end

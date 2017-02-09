@@ -1,3 +1,7 @@
+# 1.2.3 (Februrary 9, 2017)
+
+* FIX: unset rbenv-specific environment variables for spawned command (fixes rbenv for real)
+
 # 1.2.2 (Februrary 9, 2017)
 
 * FIX: don't pass parent environment to spawned command (fixes rbenv)
