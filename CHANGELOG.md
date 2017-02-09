@@ -1,3 +1,7 @@
+# 1.2.2 (Februrary 9, 2017)
+
+* FIX: don't pass parent environment to spawned command (fixes rbenv)
+
 # 1.2.1 (August 24, 2016)
 
 * FIX: remove require of sys-uptime library
