@@ -5,6 +5,9 @@
 **Note: I didn't realize when I made this that there was already [Honcho](https://github.com/nickstenning/honcho),
 a clone of Foreman in Python. Sorry for the confusion. I might end up renaming this.**
 
+**Note 2: I ported this project to Rust and renamed it [Froman](https://github.com/seven1m/froman). I'll leave
+this project up, but I likely won't spend any time improving it.**
+
 You can use it in place of Foreman if you need to manage several instances
 of Sidekiq and/or Resque and don't necessarily need them all to run at once.
 
